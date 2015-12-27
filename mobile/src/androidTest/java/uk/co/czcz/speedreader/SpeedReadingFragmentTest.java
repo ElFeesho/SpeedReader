@@ -57,5 +57,7 @@ public class SpeedReadingFragmentTest extends ActivityInstrumentationTestCase2<M
         solo.typeText(0, "This is the text I want to read... quickly");
         solo.clickOnText("Read Locally");
         assertTrue(solo.waitForFragmentByTag(LocalSpeedReadingFragment.TAG));
+        assertTrue(solo.waitForView(SpeedReaderView.class));
     }
+
 }
