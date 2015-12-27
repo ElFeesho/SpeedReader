@@ -13,17 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationController = new NavigationController() {
-            @Override
-            public void displayInitialSpeedReadingEditorFragment() {
-                displayInitialSpeedReadingFragment();
-            }
-
-            @Override
-            public void displayLocalSpeedReadingFragmentForText(String text) {
-                displayLocalSpeedReadingFragment(text);
-            }
-        };
+        navigationController = new FragmentNavigationController(getSupportFragmentManager());
 
         if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) == null)
         {
@@ -40,11 +30,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayInitialSpeedReadingFragment() {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SpeedReadingFragment(), SpeedReadingFragment.TAG).commit();
-    }
-
-    private void displayLocalSpeedReadingFragment(String text) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LocalSpeedReadingFragment(), LocalSpeedReadingFragment.TAG).commit();
-    }
 }
