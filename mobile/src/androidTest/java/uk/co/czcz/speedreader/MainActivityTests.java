@@ -34,6 +34,7 @@ public class MainActivityTests extends ActivityInstrumentationTestCase2<MainActi
 
     @After
     public void tearDown() throws Exception {
+        solo.finishOpenedActivities();
         super.tearDown();
     }
 

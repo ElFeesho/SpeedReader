@@ -34,11 +34,19 @@ public class SpeedReadingFragmentTest extends ActivityInstrumentationTestCase2<M
 
     @After
     public void tearDown() throws Exception {
+        solo.finishOpenedActivities();
         super.tearDown();
     }
 
     @Test
     public void whenTheSpeedReadingFragmentIsDisplayed_aSpeedReadEditorViewIsOnScreen() {
         assertTrue(solo.waitForView(SpeedReadingEditorView.class));
+    }
+
+    @Test
+    public void whenTheEditorLaunchesALocalSpeedReadingSession_ifThereIsNoEditorText_theEditorTextErrorStringIsSet()
+    {
+        solo.clickOnText("Read Locally");
+        assertTrue(solo.waitForText("You can only speed read when you have entered text."));
     }
 }
