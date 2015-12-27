@@ -17,6 +17,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayInitialSpeedReadingFragment() {
-        getSupportFragmentManager().beginTransaction().add(new SpeedReadingFragment(), SpeedReadingFragment.TAG).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new SpeedReadingFragment(), SpeedReadingFragment.TAG).commit();
     }
 }
