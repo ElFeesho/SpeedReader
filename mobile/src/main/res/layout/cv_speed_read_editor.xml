@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uk.co.czcz.speedreader.SpeedReadEditorView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/text_to_read"
+        android:hint="@string/hint_speed_read"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="150dp"
+        android:maxHeight="300dp"/>
+    <Button
+        android:layout_below="@+id/text_to_read"
+        android:id="@+id/read_locally"
+        android:text="@string/button_read_locally"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@+id/text_to_read"
+        android:id="@+id/read_wear"
+        android:text="@string/button_read_on_wear"
+        android:layout_toLeftOf="@+id/read_locally"
+        android:layout_toStartOf="@+id/read_locally"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+</uk.co.czcz.speedreader.SpeedReadEditorView>
