@@ -15,4 +15,20 @@ public class SpeedReadingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_speed_reading, container, false);
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        new SpeedReadingEditorPresenter((SpeedReadingEditorPresenter.View) view.findViewById(R.id.editor), new SpeedReadingEditorPresenter.SpeedReadingLauncherDelegate() {
+            @Override
+            public void launchLocally(String text) {
+
+            }
+
+            @Override
+            public void launchWear(String text) {
+
+            }
+        });
+    }
 }
