@@ -59,17 +59,42 @@ public class SpeedReadingEditorViewTest {
         assertThat(spySpeedReadingLauncherDelegate.launchWear_text, is(expectedText));
     }
 
+    @Test
+    public void whenASpeedReadingEditorViewRequestsASpeedReadingSessionWhenEditorTextIsEmpty_theEditorIsGivenAnOpportunityToDisplayAnError() {
+        FakeSpeedReadingEditorView fakeSpeedReadingEditorView = FakeSpeedReadingEditorView.withEnteredText("");
+        SpySpeedReadingLauncherDelegate spySpeedReadingLauncherDelegate = new SpySpeedReadingLauncherDelegate();
+        new SpeedReadingEditorPresenter(fakeSpeedReadingEditorView, spySpeedReadingLauncherDelegate);
+
+        fakeSpeedReadingEditorView.fake_launchSpeedReadingLocally();
+
+        assertThat(fakeSpeedReadingEditorView.displayNoTextError_called, is(true));
+    }
+
+    @Test
+    public void whenASpeedReadingEditorViewRequestsASpeedReadingSession_onWear_WhenEditorTextIsEmpty_theEditorIsGivenAnOpportunityToDisplayAnError() {
+        FakeSpeedReadingEditorView fakeSpeedReadingEditorView = FakeSpeedReadingEditorView.withEnteredText("");
+        SpySpeedReadingLauncherDelegate spySpeedReadingLauncherDelegate = new SpySpeedReadingLauncherDelegate();
+        new SpeedReadingEditorPresenter(fakeSpeedReadingEditorView, spySpeedReadingLauncherDelegate);
+
+        fakeSpeedReadingEditorView.fake_launchSpeedReadingOnWear();
+
+        assertThat(fakeSpeedReadingEditorView.displayNoTextError_called, is(true));
+    }
+
     public static class SpeedReadingEditorPresenter {
 
         private final View view;
         private final SpeedReadingLauncherDelegate speedReadingLauncherDelegate;
 
         public interface View {
+
             interface Listener {
                 void requestLaunchLocally(String text);
 
                 void requestLaunchWear(String text);
             }
+
+            void displayNoTextError();
 
             void addListener(Listener listener);
         }
@@ -80,7 +105,7 @@ public class SpeedReadingEditorViewTest {
             void launchWear(String text);
         }
 
-        public SpeedReadingEditorPresenter(View view, final SpeedReadingLauncherDelegate speedReadingLauncherDelegate) {
+        public SpeedReadingEditorPresenter(final View view, final SpeedReadingLauncherDelegate speedReadingLauncherDelegate) {
             this.view = view;
             this.speedReadingLauncherDelegate = speedReadingLauncherDelegate;
 
@@ -89,6 +114,8 @@ public class SpeedReadingEditorViewTest {
                 public void requestLaunchLocally(String text) {
                     if (text.length() > 0) {
                         speedReadingLauncherDelegate.launchLocally(text);
+                    } else {
+                        view.displayNoTextError();
                     }
                 }
 
@@ -96,6 +123,8 @@ public class SpeedReadingEditorViewTest {
                 public void requestLaunchWear(String text) {
                     if (text.length() > 0) {
                         speedReadingLauncherDelegate.launchWear(text);
+                    } else {
+                        view.displayNoTextError();
                     }
                 }
             });
@@ -105,6 +134,7 @@ public class SpeedReadingEditorViewTest {
     private static class FakeSpeedReadingEditorView implements SpeedReadingEditorPresenter.View {
         private String editorText = "";
         private Listener listener;
+        public boolean displayNoTextError_called;
 
         public void fake_launchSpeedReadingLocally() {
             listener.requestLaunchLocally(editorText);
@@ -114,6 +144,11 @@ public class SpeedReadingEditorViewTest {
             FakeSpeedReadingEditorView fakeSpeedReadingEditorView = new FakeSpeedReadingEditorView();
             fakeSpeedReadingEditorView.editorText = editorText;
             return fakeSpeedReadingEditorView;
+        }
+
+        @Override
+        public void displayNoTextError() {
+            displayNoTextError_called = true;
         }
 
         @Override
