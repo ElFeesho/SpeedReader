@@ -7,19 +7,19 @@ import android.view.View;
 /**
  * Created by chris on 27/12/15.
  */
-public class SpeedReadEditorView extends View {
+public class SpeedReadingEditorView extends View {
 
-    public SpeedReadEditorView(Context context)
+    public SpeedReadingEditorView(Context context)
     {
         this(context, null, 0);
     }
 
-    public SpeedReadEditorView(Context context, AttributeSet attr)
+    public SpeedReadingEditorView(Context context, AttributeSet attr)
     {
         this(context, attr, 0);
     }
 
-    public SpeedReadEditorView(Context context, AttributeSet attrs, int defStyle) {
+    public SpeedReadingEditorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 }

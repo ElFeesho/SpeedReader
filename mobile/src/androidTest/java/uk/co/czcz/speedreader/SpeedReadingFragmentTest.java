@@ -39,6 +39,6 @@ public class SpeedReadingFragmentTest extends ActivityInstrumentationTestCase2<M
 
     @Test
     public void whenTheSpeedReadingFragmentIsDisplayed_aSpeedReadEditorViewIsOnScreen() {
-        assertTrue(solo.waitForView(SpeedReadEditorView.class));
+        assertTrue(solo.waitForView(SpeedReadingEditorView.class));
     }
 }
