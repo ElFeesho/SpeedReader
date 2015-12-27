@@ -9,8 +9,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="uk.co.czcz.speedreader.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/text_to_read"
+        android:hint="@string/hint_speed_read"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:minHeight="150dp"
+        android:maxHeight="300dp"/>
+    <Button
+        android:layout_below="@+id/text_to_read"
+        android:id="@+id/read_locally"
+        android:text="@string/button_read_locally"
+        android:layout_alignParentRight="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@+id/text_to_read"
+        android:id="@+id/read_wear"
+        android:text="@string/button_read_on_wear"
+        android:layout_toLeftOf="@+id/read_locally"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
