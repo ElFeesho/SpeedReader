@@ -12,8 +12,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) == null)
         {
-            // Initial run of this activity, so lets display a fragment
-            getSupportFragmentManager().beginTransaction().add(new SpeedReadingFragment(), SpeedReadingFragment.TAG).commit();
+            displayInitialSpeedReadingFragment();
         }
+    }
+
+    private void displayInitialSpeedReadingFragment() {
+        getSupportFragmentManager().beginTransaction().add(new SpeedReadingFragment(), SpeedReadingFragment.TAG).commit();
     }
 }
