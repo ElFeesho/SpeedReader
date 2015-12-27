@@ -7,8 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SpeedReadingFragment extends Fragment {
+public class SpeedReadingFragment extends Fragment implements NavigationController.CanUseNavigationController {
     public static String TAG = "speed_reading_fragment";
+    private NavigationController navigationController;
 
     @Nullable
     @Override
@@ -22,7 +23,7 @@ public class SpeedReadingFragment extends Fragment {
         new SpeedReadingEditorPresenter((SpeedReadingEditorPresenter.View) view.findViewById(R.id.editor), new SpeedReadingEditorPresenter.SpeedReadingLauncherDelegate() {
             @Override
             public void launchLocally(String text) {
-
+                navigationController.displayLocalSpeedReadingFragmentForText(text);
             }
 
             @Override
@@ -30,5 +31,10 @@ public class SpeedReadingFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void provideNavigationController(NavigationController controller) {
+        navigationController = controller;
     }
 }

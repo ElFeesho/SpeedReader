@@ -49,4 +49,13 @@ public class SpeedReadingFragmentTest extends ActivityInstrumentationTestCase2<M
         solo.clickOnText("Read Locally");
         assertTrue(solo.waitForText("You can only speed read when you have entered text."));
     }
+
+
+    @Test
+    public void whenTextHasBeenEntered_whenARequestToReadLocallyOccurs_theLocalSpeedReaderIsLaunched()
+    {
+        solo.typeText(0, "This is the text I want to read... quickly");
+        solo.clickOnText("Read Locally");
+        assertTrue(solo.waitForFragmentByTag(LocalSpeedReadingFragment.TAG));
+    }
 }
