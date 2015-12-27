@@ -2,12 +2,9 @@ package uk.co.czcz.speedreader;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
+import android.widget.RelativeLayout;
 
-/**
- * Created by chris on 27/12/15.
- */
-public class SpeedReadingEditorView extends View {
+public class SpeedReadingEditorView extends RelativeLayout {
 
     public SpeedReadingEditorView(Context context)
     {
